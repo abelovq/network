@@ -1,12 +1,19 @@
 import React from "react";
-import MainPage from './components/MainPage'
-// import LogIn from './components/LogIn'
-// import SignUp from './components/SignUp'
+import MainPage from "./components/MainPage";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp";
 
- const App = () => {
-
+const App = () => {
   return (
-    <MainPage />
-  )
- }
-export default App;
+    <>
+      <Switch>
+      <Route exact path="/main" component={MainPage} />
+      <Route exact path="/login" component={LogIn} />
+      <Route exact path="/signup" component={SignUp} />
+      <Redirect from="/" to="/main" />
+      </Switch>
+    </>
+  );
+};
+export default withRouter(App);
