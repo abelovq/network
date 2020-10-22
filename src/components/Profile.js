@@ -9,7 +9,7 @@ export default class Profile extends React.Component {
   
   render() {
     return (
-      <div></div>
+      <div>Profile</div>
       )
     }
   }

@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 // import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+// import {connect} from 'react-redux'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -27,7 +29,7 @@ function Copyright() {
 }
 
 
-export default class LogIn extends React.Component {
+class LogIn extends React.Component {
   constructor(props) {
     super(props)
       this.state = {}
@@ -101,3 +103,11 @@ render() {
   );
 }
 }
+
+export default LogIn
+
+// mapDispatchToProps = {
+
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

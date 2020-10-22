@@ -10,6 +10,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./MainPage.css";
 
+// import {connect} from 'react-redux'
+
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +19,32 @@ class PostForm extends React.Component {
       title: "",
       description: "",
     };
+    // this.submitHandler = this.submitHandler.bind(this)
+    // this.titleInputHandler = this.titleInputHandler.bind(this)
+    // this.descriptionInputHandler = this.descriptionInputHandler.bind(this)
   }
 
-  submitHandler = (event) => {};
+  // submitHandler(e) {
+  //   e.preventDefault();
+  //   const newItem = {
+  //     title: this.state.title,
+  //     description: this.state.description,
+  //     id: Date.now().toString()
+  //   };
+  //   this.setState(state => ({
+  //     items: state.items.concat(newItem),
+  //     title: '',
+  //     description: ''
+  //   }));
+  // }
 
-  changeInputHandler = (event) => {};
+  // titleInputHandler = (event) => {
+  //   this.setState({ title: event.target.value })
+  // };
+
+  // descriptionInputHandler = (event) => {
+  //   this.setState({ description: event.target.value })
+  // };
 
   render() {
     return (
@@ -31,9 +54,9 @@ class PostForm extends React.Component {
           label="Type your title"
           variant="outlined"
           className="input-post"
-          value={this.state.title}
+          // value={this.state.title}
           name="title"
-          // onChange={this.changeInputHandler}
+          // onChange={this.titleInputHandler}
         />
         <TextField
           id="description-input"
@@ -42,8 +65,8 @@ class PostForm extends React.Component {
           variant="outlined"
           className="input-post"
           style={{ marginTop: 10 }}
-          value={this.state.description}
-          // onChange={this.changeInputHandler}
+          // value={this.state.description}
+          // onChange={this.descriptionInputHandler}
         />
         <Button
           variant="contained"
@@ -58,7 +81,12 @@ class PostForm extends React.Component {
 }
 
 // class Posts extends React.Component {
-
+//   render() {
+//     return (<>
+//       this.props.items.map(item => <Post />
+//       </>
+//       )
+//     }
 // }
 
 class Post extends React.Component {
@@ -78,7 +106,9 @@ class Post extends React.Component {
   }
 }
 
-class Comments extends React.Component {}
+// class Comments extends React.Component {
+  
+// }
 
 class CommentForm extends React.Component {
   render() {
@@ -170,7 +200,7 @@ function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}><Link className="link" to="/profile">Profile</Link></MenuItem>
         <MenuItem onClick={handleClose}>
           <Link className="link" to="/login">
             Logout
@@ -204,4 +234,13 @@ class MainPage extends React.Component {
   }
 }
 
-export default MainPage;
+// const mapStateToProps = state => {
+  // return {
+  //   anyKey: state.posts.posts
+  // }
+// }
+
+// const mapDispatchToProps 
+
+// export default connect(mapStateToProps, null)(MainPage);
+export default MainPage
