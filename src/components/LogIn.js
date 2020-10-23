@@ -78,10 +78,10 @@ class LogIn extends React.Component {
               autoComplete="current-password"
               onChange={this.handleChangeInput}
             />
-            <Button type="submit" fullWidth variant="contained" color="primary">
+            <Button type="submit" fullWidth variant="contained" color="primary" style={{marginBottom: 15}}>
               Log In
             </Button>
-            <Grid container style={{marginBottom: 15}}>
+            <Grid container justify="flex-end" >
               <Grid item>
                 <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
               </Grid>

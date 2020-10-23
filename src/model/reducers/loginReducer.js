@@ -1,6 +1,9 @@
 // import { LOGIN_USER_ATTEMPT, LOGIN_USER_SUCCESS } from "../types";
 
-// const initialState = {};
+// const initialState = {
+//     email: '',
+//     password: '',
+// };
 
 // export const loginReducer = (state = initialState, action) => {
 //   switch (action.type) {
