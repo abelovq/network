@@ -13,9 +13,22 @@ import { Link } from 'react-router-dom'
 export default class SignUp extends React.Component {
   constructor(props) {
     super(props)
-      this.state = {}
+      this.state = {
+        firstName : '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      }
       this.handleSubmitForm = this.handleSubmitForm.bind(this)
+      this.handleChangeInput = this.handleChangeInput.bind(this)
     }
+
+  handleChangeInput = event => {
+    event.persist();
+    this.setState(prev => ({...prev, ...{[event.target.name] : event.target.value}}))
+    console.log(event.target.value)
+  }
 
     handleSubmitForm = event => {
       event.preventDefault();
@@ -45,6 +58,7 @@ render() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={this.handleChangeInput}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -56,6 +70,7 @@ render() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={this.handleChangeInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -67,6 +82,7 @@ render() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={this.handleChangeInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -79,6 +95,7 @@ render() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={this.handleChangeInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -91,6 +108,7 @@ render() {
                 type="password-confirm"
                 id="password-confirm"
                 autoComplete="current-password"
+                onChange={this.handleChangeInput}
               />
             </Grid>
           </Grid>

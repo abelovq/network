@@ -15,8 +15,20 @@ import Container from "@material-ui/core/Container";
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: '',
+      password: '',
+    };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this)
+  }
+
+  handleChangeInput = event => {
+    event.persist()
+    this.setState(prev => ({...prev, ...{
+      [event.target.name]: event.target.value
+    }}))
+    console.log(event.target.value)
   }
 
   handleSubmitForm = (event) => {
@@ -35,11 +47,11 @@ class LogIn extends React.Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div>
-          <Avatar>
+          <Avatar style={{marginTop: 100, marginBottom: 15}}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form noValidate onSubmit={this.handleSubmitForm}>
             <TextField
@@ -52,6 +64,7 @@ class LogIn extends React.Component {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={this.handleChangeInput}
             />
             <TextField
               variant="outlined"
@@ -63,12 +76,12 @@ class LogIn extends React.Component {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={this.handleChangeInput}
             />
             <Button type="submit" fullWidth variant="contained" color="primary">
               Log In
             </Button>
-            <Grid container>
-              <Grid item xs></Grid>
+            <Grid container style={{marginBottom: 15}}>
               <Grid item>
                 <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
               </Grid>
