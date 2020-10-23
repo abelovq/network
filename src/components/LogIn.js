@@ -3,36 +3,27 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-// import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Container from '@material-ui/core/Container';
 
 // import {connect} from 'react-redux'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 class LogIn extends React.Component {
   constructor(props) {
     super(props)
       this.state = {}
+      this.handleSubmitForm = this.handleSubmitForm.bind(this)
+    }
+
+    handleSubmitForm = event => {
+      event.preventDefault();
+      console.log(123)
     }
 
 
@@ -47,7 +38,7 @@ render() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form noValidate>
+        <form noValidate onSubmit={this.handleSubmitForm}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,26 +61,19 @@ render() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
           >
-            Sign In
+            Log In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/signup">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -97,7 +81,6 @@ render() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
       </Box>
     </Container>
   );
@@ -110,4 +93,4 @@ export default LogIn
 
 // }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
+// export default connect(null, mapDispatchToProps)(LogIn)

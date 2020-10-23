@@ -1,6 +1,6 @@
 // import { combineReducers } from 'redux'
 
-// import { logInReducer } from 
+// import { logInReducer } from './loginReducer'
 // import { signUpReducer } from 
 // import { mainPageReducer } from
 // import { profileReducer } from
