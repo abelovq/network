@@ -1,17 +1,25 @@
 import React from 'react'
 
-import Comment from './Comment'
+import Comment from './MainPage/Comment'
+
+const Posts = () => {
+    
+}
+
+
 
 class Post extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+
+      };
     }
   
     render() {
       return (
         <div className="card">
-          <div className="title">Title</div>
+          <div className="title">{this}</div>
           <div className="description">Description</div>
           <Comment />
         </div>

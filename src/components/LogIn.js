@@ -52,6 +52,7 @@ class LogIn extends React.Component {
         response.headers.get("Access-Token")
       );
       localStorage.setItem("client", response.headers.get("Client"));
+      localStorage.setItem("uid", response.headers.get("Uid"));
     });
     setTimeout(() => {
       window.location.pathname = "/main";
