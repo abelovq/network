@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import { Provider } from 'react-redux';
 // import {createStore, compose, applyMiddleware} from 'redux'
 // import createSagaMiddleware from 'redux-saga'
+// import {rootReducer} from './model/reducers/rootReducer'
 
 // const saga = createSagaMiddleware()
 

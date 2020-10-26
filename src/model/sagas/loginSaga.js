@@ -10,8 +10,8 @@
 
 // function* loginSaga() {
 //     yield fetch("https://postify-api.herokuapp.com/auth/sign_in", {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type' : 'application/json; charset=utf-8'
-    //   }
+//       method: "POST",
+//       headers: {
+//         'Content-Type' : 'application/json; charset=utf-8'
+//       },
 // }
