@@ -38,7 +38,10 @@ export default class Posts extends React.Component {
       .then((response) => response.text())
       .then((result) =>
         this.setState({
-          posts: [...this.state.posts, ...JSON.parse(result).slice(0, 10)],
+          posts: [
+            ...this.state.posts,
+            ...JSON.parse(result).reverse().slice(0, 10),
+          ],
         })
       )
       .catch((error) => console.log("error", error));

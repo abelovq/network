@@ -71,16 +71,14 @@ function SimpleMenu() {
 }
 
 class MainPage extends React.Component {
-  
   render() {
-   
     return (
       <div>
         <nav className="navbar">
           <SimpleMenu />
         </nav>
         <div className="wrapper">
-          <PostForm addPost={this.addPost} />
+          <PostForm />
           <Posts />
         </div>
       </div>
