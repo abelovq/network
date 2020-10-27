@@ -1,6 +1,7 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+// import { addPost } from '../Posts'
 
 class PostForm extends React.Component {
     constructor(props) {
@@ -11,14 +12,14 @@ class PostForm extends React.Component {
       };
 
 
-      this.onclickHandler = this.onclickHandler.bind(this)
+      this.submitHandler = this.submitHandler.bind(this)
       this.titleInputHandler = this.titleInputHandler.bind(this)
       this.descriptionInputHandler = this.descriptionInputHandler.bind(this)
     }
   
    
 
-    onclickHandler() {
+    submitHandler = (event) => {
       this.props.addPost(this.state)
     }
   
@@ -32,7 +33,7 @@ class PostForm extends React.Component {
   
     render() {
       return (
-        <form className="form-post">
+        <form className="form-post" onSubmit={this.submitHandler}>
           <TextField
             id="title-input"
             label="Type your title"
@@ -51,7 +52,7 @@ class PostForm extends React.Component {
             onChange={this.descriptionInputHandler}
           />
           <Button
-            onClick={this.onclickHandler}
+            
             variant="contained"
             color="primary"
             style={{ marginTop: 10, width: "100%" }}

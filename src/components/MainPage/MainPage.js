@@ -55,6 +55,11 @@ function SimpleMenu() {
             Profile
           </Link>
         </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link className="link" to="/posts">
+            All posts
+          </Link>
+        </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Link className="link" to="/login">
             Logout

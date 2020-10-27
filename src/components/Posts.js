@@ -1,7 +1,8 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+// import PostForm from './MainPage/PostForm'
 
-import Comment from './MainPage/Comment'
+import Comment from "./MainPage/Comment";
 
 export default class Posts extends React.Component {
   constructor(props) {
@@ -43,34 +44,33 @@ export default class Posts extends React.Component {
       .catch((error) => console.log("error", error));
   }
 
-
-
-render() {
-  const fetchedPosts = this.state.posts.map((post) => {
-    return (
-      <Post post={post} key={post.id}/>  
-    );
-  });
-
+  render() {
+    const posts = this.state.posts;
+    const postId = this.props.match && this.props.match.params.postID;
+    const postToRender = postId
+      ? posts.filter((post) => post.id === +postId)
+      : posts;
     return (
       <>
-      {fetchedPosts}
+        {postToRender.map((post) => {
+          return <Post post={post} key={post.id} {...this.props} />;
+        })}
       </>
-    )
-}
+    );
+  }
 }
 
 class Post extends React.Component {
-render() {
-  return (
-    <Link to={`/posts/${this.props.post.id}`} >
-    <div className="card" key={this.props.post.id}>
-        <div className="title">{this.props.post.title}</div>
-        <div className="description">{this.props.post.description}</div>
-        <Comment />
-      </div>
+  render() {
+    // onClick={() => this.props.history.push(`/posts/${this.props.post.id}`)}
+    return (
+      <Link to={`/posts/${this.props.post.id}`}>
+        <div className="card" key={this.props.post.id}>
+          <div className="title">{this.props.post.title}</div>
+          <div className="description">{this.props.post.description}</div>
+          <Comment />
+        </div>
       </Link>
-  )
+    );
+  }
 }
-}
-
