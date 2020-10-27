@@ -9,13 +9,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 // import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "./MainPage.css";
-import Comment from './Comment'
-import PostForm from './PostForm'
-import Post from '../Posts'
+// import Comment from "./Comment";
+import PostForm from "./PostForm";
+import Posts from "../Posts";
 
 // import {connect} from 'react-redux'
-
-
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,11 +27,11 @@ function SimpleMenu() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('access-token');
-    localStorage.removeItem('client')
-    localStorage.removeItem('uid')
-    setTimeout(setAnchorEl(null), 500)
-  }
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("client");
+    localStorage.removeItem("uid");
+    setTimeout(setAnchorEl(null), 500);
+  };
 
   return (
     <div>
@@ -52,7 +50,11 @@ function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}><Link className="link" to="/profile">Profile</Link></MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link className="link" to="/profile">
+            Profile
+          </Link>
+        </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Link className="link" to="/login">
             Logout
@@ -64,60 +66,17 @@ function SimpleMenu() {
 }
 
 class MainPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      posts: [],
-    }
-    this.addPost= this.addPost.bind(this);
-  }
-
-  addPost(post) {
-    this.setState({
-      posts: [...this.state.posts, post]
-    })
-    console.log(this.state)
-  }
-
-  componentDidMount() {
-
-    let headers = {
-      "access-token": localStorage.getItem("access-token"),
-      "uid": localStorage.getItem("uid"),
-      "client": localStorage.getItem("client"),
-    }
-
-    let requestOptions = {
-      method: 'GET',
-      headers: headers,
-      redirect: 'follow'
-    };
-
-    fetch("https://postify-api.herokuapp.com/posts", requestOptions)
-      .then(response => response.text())
-      .then(result => this.setState({ posts: [...this.state.posts, ...JSON.parse(result).slice(0,10)]}))
-      .catch(error => console.log('error', error))
-  }
-
+  
   render() {
-    const result = this.state.posts.map((post) => {
-      return (
-          <div className="card" key={post.id}>
-            <div className="title">{post.title}</div>
-      <div className="description">{post.description}</div>
-            <Comment />
-          </div>
-      )
-    })
-      return (
+   
+    return (
       <div>
         <nav className="navbar">
           <SimpleMenu />
         </nav>
         <div className="wrapper">
           <PostForm addPost={this.addPost} />
-          {result}
+          <Posts />
         </div>
       </div>
     );
@@ -125,12 +84,12 @@ class MainPage extends React.Component {
 }
 
 // const mapStateToProps = state => {
-  // return {
-  //   
-  // }
+// return {
+//
+// }
 // }
 
-// const mapDispatchToProps 
+// const mapDispatchToProps
 
 // export default connect(mapStateToProps, null)(MainPage);
-export default MainPage
+export default MainPage;
