@@ -1,8 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-// import { connect } from "react-redux";
-// import { createPost } from "../../model/actions/postFormAction";
+import { connect } from "react-redux";
+import { createPost, fetchPost } from "../../model/actions/postsAction";
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -16,9 +16,24 @@ class PostForm extends React.Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
-  submitHandler = async (event) => {
+  submitHandler = (event) => {
     console.log("submitHandler");
     event.preventDefault();
+
+    const { title } = this.state;
+    const { description } = this.state;
+
+    const newPost = {
+      title,
+      description,
+    };
+
+    const action = createPost(newPost);
+    this.props.dispatch(action);
+
+    this.handlerSubmit();
+
+    this.setState({ title: "", description: "" });
 
     // const newPost = {
     //   title: this.state.title,
@@ -27,32 +42,32 @@ class PostForm extends React.Component {
 
     // this.props.createPost(newPost);
 
-    let headers = {
-      "access-token": localStorage.getItem("access-token"),
-      uid: localStorage.getItem("uid"),
-      client: localStorage.getItem("client"),
-      "Content-Type": "application/json; charset=utf-8",
-    };
+    // let headers = {
+    //   "access-token": localStorage.getItem("access-token"),
+    //   uid: localStorage.getItem("uid"),
+    //   client: localStorage.getItem("client"),
+    //   "Content-Type": "application/json; charset=utf-8",
+    // };
 
-    await fetch("https://postify-api.herokuapp.com/posts", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({
-        title: this.state.title,
-        description: this.state.description,
-      }),
-    })
-      .then((response) => {
-        console.log("HERE");
+    // await fetch("https://postify-api.herokuapp.com/posts", {
+    //   method: "POST",
+    //   headers: headers,
+    //   body: JSON.stringify({
+    //     title: this.state.title,
+    //     description: this.state.description,
+    //   }),
+    // })
+    //   .then((response) => {
+    //     console.log("HERE");
 
-        response.json();
-      })
-      .then(() => {
-        this.props.forceUpdate();
-      })
-      .catch((err) => console.log("ERR", err));
+    //     response.json();
+    //   })
+    //   .then(() => {
+    //     this.props.forceUpdate();
+    //   })
+    //   .catch((err) => console.log("ERR", err));
 
-    this.setState({ title: "", description: "" });
+    // this.setState({ title: "", description: "" });
   };
 
   handleChangeInput = (event) => {
@@ -66,9 +81,18 @@ class PostForm extends React.Component {
     console.log(event.target.value);
   };
 
+  handlerSubmit = () => {
+    const action = fetchPost();
+    this.props.dispatch(action);
+  };
+
+  componentDidMount() {
+    this.handlerSubmit();
+  }
+
   render() {
     return (
-      <form className="form-post">
+      <form className="form-post" onSubmit={this.submitHandler}>
         <TextField
           id="title-input"
           label="Type your title"
@@ -76,6 +100,7 @@ class PostForm extends React.Component {
           className="input-post"
           name="title"
           onChange={this.handleChangeInput}
+          value={this.state.title}
         />
         <TextField
           id="description-input"
@@ -85,6 +110,7 @@ class PostForm extends React.Component {
           className="input-post"
           style={{ marginTop: 10 }}
           onChange={this.handleChangeInput}
+          value={this.state.description}
         />
         <Button
           onClick={this.submitHandler}
@@ -99,10 +125,10 @@ class PostForm extends React.Component {
   }
 }
 
-export default PostForm;
+// export default PostForm;
 
 // const mapDispatchToProps = {
 //   createPost,
 // };
 
-// export default connect(null, mapDispatchToProps)(PostForm);
+export default connect(null, null)(PostForm);

@@ -1,14 +1,40 @@
-import { CREATE_POST } from "../types";
+import {
+  CREATE_POST,
+  FETCH_CHANGED_POST,
+  FETCH_ONE_POST,
+  FETCH_POST,
+  REQUEST_CHANGED_POSTS,
+  REQUEST_POSTS,
+  USER_POSTS,
+} from "../types";
 
-const initialState = {
+let initialState = {
   posts: [],
+  //fetchedPosts: [{title: 'Fetch', description: 'post'}]
 };
 
-export const postsReducer = (state = initialState, action) => {
+const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_POST:
+      return { posts: state.posts.concat(action.payload), ...state };
+    // return {...state, posts: [...state, action.payload]}
+    case REQUEST_POSTS:
+      return { ...state };
+    case FETCH_POST:
+      //let reverseState = state.reverse();
+      return { ...state, posts: action.payload.reverse() }; //reverse post .reverse()
+    case REQUEST_CHANGED_POSTS:
+      return { ...state };
+    case FETCH_CHANGED_POST:
       return { ...state, posts: action.payload };
+    case USER_POSTS:
+      return { ...state, posts: action.payload };
+    case FETCH_ONE_POST:
+      return { ...state, posts: action.payload };
+
     default:
       return state;
   }
 };
+
+export default postsReducer;

@@ -9,6 +9,12 @@ import createSagaMiddleware from "redux-saga";
 import { rootReducer } from "./model/reducers/rootReducer";
 import sagasWatcherUser from "./model/sagas/loginSaga";
 import sagasWatcherUserAuth from "./model/sagas/signUpSaga";
+import sagasWatcherPost from "./model/sagas/getPostsSaga";
+import sagasWatcherOnePost from "./model/sagas/getPostSaga";
+import sagasWatcherPostAdd from "./model/sagas/addPostSaga";
+import sagasWatcherComments from "./model/sagas/getCommentsSaga";
+import sagasWatcherChangePost from "./model/sagas/changePostSaga";
+import sagasAddComment from "./model/sagas/addCommentSaga";
 
 const saga = createSagaMiddleware();
 
@@ -22,6 +28,12 @@ export const store = createStore(
 
 saga.run(sagasWatcherUser);
 saga.run(sagasWatcherUserAuth);
+saga.run(sagasWatcherPost);
+saga.run(sagasWatcherPostAdd);
+saga.run(sagasWatcherComments);
+saga.run(sagasWatcherChangePost);
+saga.run(sagasWatcherOnePost);
+saga.run(sagasAddComment);
 
 ReactDOM.render(
   <Provider store={store}>
