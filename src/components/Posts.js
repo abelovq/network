@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import PostForm from './MainPage/PostForm'
+// import { connect } from "react-redux";
+// import MainPage from "./MainPage/MainPage";
 
 import Comment from "./MainPage/Comment";
 
-export default class Posts extends React.Component {
+export class Posts extends React.Component {
   constructor(props) {
     super(props);
 
@@ -67,13 +69,32 @@ class Post extends React.Component {
   render() {
     // onClick={() => this.props.history.push(`/posts/${this.props.post.id}`)}
     return (
-      <Link to={`/posts/${this.props.post.id}`}>
-        <div className="card" key={this.props.post.id}>
-          <div className="title">{this.props.post.title}</div>
-          <div className="description">{this.props.post.description}</div>
-          <Comment />
+      // <Link to={`/posts/${this.props.post.id}`}>
+      <div className="card" key={this.props.post.id}>
+        <div
+          className="title"
+          onClick={() =>
+            this.props.history.push(`/posts/${this.props.post.id}`)
+          }
+        >
+          {this.props.post.title}
         </div>
-      </Link>
+        <div className="description">{this.props.post.description}</div>
+        <Comment />
+      </div>
+      // </Link>
     );
   }
 }
+
+export default Posts;
+
+// const mapStateToProps = (state) => {
+//   return {
+//     posts: state.posts.posts,
+//   };
+// };
+
+// const mapDispatchToProps
+
+// export default connect(mapStateToProps, null)(MainPage);

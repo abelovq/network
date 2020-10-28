@@ -8,16 +8,18 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchAuthUser } from "../model/actions/signUpAction";
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      passwrod_confirmation: "",
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -34,7 +36,16 @@ export default class SignUp extends React.Component {
 
   handleSubmitForm = (event) => {
     event.preventDefault();
-    console.log("registration");
+    const action = fetchAuthUser({
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      password: this.state.password,
+      passwrod_confirmation: this.state.passwrod_confirmation,
+    });
+    this.props.dispatch(action);
+
+    setTimeout(() => (window.location.href = "/MainPage"), 1000);
   };
 
   render() {
@@ -53,11 +64,11 @@ export default class SignUp extends React.Component {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="fname"
-                  name="firstName"
+                  name="first_name"
                   variant="outlined"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first_name"
                   label="First Name"
                   autoFocus
                   onChange={this.handleChangeInput}
@@ -68,9 +79,9 @@ export default class SignUp extends React.Component {
                   variant="outlined"
                   required
                   fullWidth
-                  id="lastName"
+                  id="last_name"
                   label="Last Name"
-                  name="lastName"
+                  name="last_name"
                   autoComplete="lname"
                   onChange={this.handleChangeInput}
                 />
@@ -105,10 +116,10 @@ export default class SignUp extends React.Component {
                   variant="outlined"
                   required
                   fullWidth
-                  name="password-confirm"
+                  name="passwrod_confirmation"
                   label="Confirm password"
-                  type="password-confirm"
-                  id="password-confirm"
+                  type="password"
+                  id="passwrod_confirmation"
                   autoComplete="current-password"
                   onChange={this.handleChangeInput}
                 />
@@ -134,3 +145,5 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+export default connect(null, null)(SignUp);

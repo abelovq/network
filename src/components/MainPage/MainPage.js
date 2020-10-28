@@ -13,7 +13,7 @@ import "./MainPage.css";
 import PostForm from "./PostForm";
 import Posts from "../Posts";
 
-// import {connect} from 'react-redux'
+// import { connect } from "react-redux";
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,9 +27,8 @@ function SimpleMenu() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("access-token");
-    localStorage.removeItem("client");
-    localStorage.removeItem("uid");
+    localStorage.clear();
+    localStorage.removeItem("user-id");
     setTimeout(setAnchorEl(null), 500);
   };
 
@@ -94,5 +93,5 @@ class MainPage extends React.Component {
 
 // const mapDispatchToProps
 
-// export default connect(mapStateToProps, null)(MainPage);
+// export default connect(null, null)(MainPage);
 export default MainPage;

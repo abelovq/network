@@ -9,15 +9,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
+// import { store } from "../index";
+import { fetchLoginUser } from "../model/actions/loginAction";
 
-// import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: "Jojo@mail.jp",
+      password: "Jojo123321",
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -36,27 +38,36 @@ class LogIn extends React.Component {
 
   handleSubmitForm = (event) => {
     event.preventDefault();
-
-    fetch("https://postify-api.herokuapp.com/auth/sign_in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      }),
-    }).then((response) => {
-      localStorage.setItem(
-        "access-token",
-        response.headers.get("Access-Token")
-      );
-      localStorage.setItem("client", response.headers.get("Client"));
-      localStorage.setItem("uid", response.headers.get("Uid"));
+    const action = fetchLoginUser({
+      email: this.state.email,
+      password: this.state.password,
     });
-    setTimeout(() => {
-      window.location.pathname = "/main";
+    this.props.dispatch(action);
+
+    setTimeout(function () {
+      window.location.href = "/MainPage";
     }, 1000);
+
+    // fetch("https://postify-api.herokuapp.com/auth/sign_in", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json; charset=utf-8",
+    //   },
+    //   body: JSON.stringify({
+    //     email: this.state.email,
+    //     password: this.state.password,
+    //   }),
+    // }).then((response) => {
+    //   localStorage.setItem(
+    //     "access-token",
+    //     response.headers.get("Access-Token")
+    //   );
+    //   localStorage.setItem("client", response.headers.get("Client"));
+    //   localStorage.setItem("uid", response.headers.get("Uid"));
+    // });
+    // setTimeout(() => {
+    //   window.location.pathname = "/main";
+    // }, 1000);
   };
 
   render() {
@@ -119,11 +130,11 @@ class LogIn extends React.Component {
   }
 }
 
-export default LogIn;
+// export default LogIn;
 
 // const mapDispatchToProps = {
-//  email: '',
-//  password: ''
-// }
+//   email: "",
+//   password: "",
+// };
 
-// export default connect(null, mapDispatchToProps)(LogIn)
+export default connect(null, null)(LogIn);

@@ -1,7 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-// import { addPost } from '../Posts'
+// import { connect } from "react-redux";
+// import { createPost } from "../../model/actions/postFormAction";
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -18,7 +19,14 @@ class PostForm extends React.Component {
   submitHandler = async (event) => {
     console.log("submitHandler");
     event.preventDefault();
-    // this.props.addPost(this.state)
+
+    // const newPost = {
+    //   title: this.state.title,
+    //   description: this.state.description,
+    // };
+
+    // this.props.createPost(newPost);
+
     let headers = {
       "access-token": localStorage.getItem("access-token"),
       uid: localStorage.getItem("uid"),
@@ -43,6 +51,8 @@ class PostForm extends React.Component {
         this.props.forceUpdate();
       })
       .catch((err) => console.log("ERR", err));
+
+    this.setState({ title: "", description: "" });
   };
 
   handleChangeInput = (event) => {
@@ -90,3 +100,9 @@ class PostForm extends React.Component {
 }
 
 export default PostForm;
+
+// const mapDispatchToProps = {
+//   createPost,
+// };
+
+// export default connect(null, mapDispatchToProps)(PostForm);

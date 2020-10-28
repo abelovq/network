@@ -1,17 +1,19 @@
-// import { LOGIN_USER_ATTEMPT, LOGIN_USER_SUCCESS } from "../types";
+import { FETCH_LOGIN_USER, REQUEST_LOGIN_USER } from "../types";
+const initialState = {
+  email: "",
+  password: "",
+  id: null,
+};
 
-// const initialState = {
-//     email: '',
-//     password: '',
-// };
+const loginReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_LOGIN_USER:
+      return { ...state };
+    case REQUEST_LOGIN_USER:
+      return { ...state, data: action.payload };
+    default:
+      return state;
+  }
+};
 
-// export const loginReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case LOGIN_USER_ATTEMPT:
-//       return { ...state, login: action.payload };
-//     case LOGIN_USER_SUCCESS:
-//       return { ...state, successLogin: action.payload };
-//     default:
-//       return state;
-//   }
-// };
+export default loginReducer;
