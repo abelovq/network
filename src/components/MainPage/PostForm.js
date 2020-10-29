@@ -34,40 +34,6 @@ class PostForm extends React.Component {
     this.handlerSubmit();
 
     this.setState({ title: "", description: "" });
-
-    // const newPost = {
-    //   title: this.state.title,
-    //   description: this.state.description,
-    // };
-
-    // this.props.createPost(newPost);
-
-    // let headers = {
-    //   "access-token": localStorage.getItem("access-token"),
-    //   uid: localStorage.getItem("uid"),
-    //   client: localStorage.getItem("client"),
-    //   "Content-Type": "application/json; charset=utf-8",
-    // };
-
-    // await fetch("https://postify-api.herokuapp.com/posts", {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: JSON.stringify({
-    //     title: this.state.title,
-    //     description: this.state.description,
-    //   }),
-    // })
-    //   .then((response) => {
-    //     console.log("HERE");
-
-    //     response.json();
-    //   })
-    //   .then(() => {
-    //     this.props.forceUpdate();
-    //   })
-    //   .catch((err) => console.log("ERR", err));
-
-    // this.setState({ title: "", description: "" });
   };
 
   handleChangeInput = (event) => {

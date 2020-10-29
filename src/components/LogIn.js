@@ -9,7 +9,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-// import { store } from "../index";
 import { fetchLoginUser } from "../model/actions/loginAction";
 
 import { connect } from "react-redux";
@@ -47,27 +46,6 @@ class LogIn extends React.Component {
     setTimeout(function () {
       window.location.href = "/MainPage";
     }, 1000);
-
-    // fetch("https://postify-api.herokuapp.com/auth/sign_in", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json; charset=utf-8",
-    //   },
-    //   body: JSON.stringify({
-    //     email: this.state.email,
-    //     password: this.state.password,
-    //   }),
-    // }).then((response) => {
-    //   localStorage.setItem(
-    //     "access-token",
-    //     response.headers.get("Access-Token")
-    //   );
-    //   localStorage.setItem("client", response.headers.get("Client"));
-    //   localStorage.setItem("uid", response.headers.get("Uid"));
-    // });
-    // setTimeout(() => {
-    //   window.location.pathname = "/main";
-    // }, 1000);
   };
 
   render() {
@@ -129,12 +107,5 @@ class LogIn extends React.Component {
     );
   }
 }
-
-// export default LogIn;
-
-// const mapDispatchToProps = {
-//   email: "",
-//   password: "",
-// };
 
 export default connect(null, null)(LogIn);

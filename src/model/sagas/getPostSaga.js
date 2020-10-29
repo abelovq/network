@@ -22,11 +22,10 @@ async function fetchPosts(postID) {
   const res = await fetch(`https://postify-api.herokuapp.com/posts/${postID}`, {
     method: "GET",
     headers: {
-      access_token: localStorage.getItem("access-token"),
+      "Access-Token": localStorage.getItem("access-token"),
       client: localStorage.getItem("client"),
       uid: localStorage.getItem("uid"),
       "Content-Type": "application/json;charset=utf-8",
-      "Access-Control-Allow-Origin": "*",
     },
   });
   return await res.json();

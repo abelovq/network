@@ -2,11 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+// import Accordion from "@material-ui/core/Accordion";
+// import AccordionSummary from "@material-ui/core/AccordionSummary";
+// import AccordionDetails from "@material-ui/core/AccordionDetails";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import "./MainPage.css";
+import "./Profile.css";
 // import Comment from "./Comment";
-import PostForm from "./PostForm";
-import PostsInMain from "./PostsInMain";
+// import PostForm from "./PostForm";
+import PostsInProfile from "./PostsInProfile";
 
 // import { connect } from "react-redux";
 
@@ -45,8 +50,8 @@ function SimpleMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <Link className="link" to="/profile">
-            Profile
+          <Link className="link" to="/main">
+            Main Page
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
@@ -64,7 +69,7 @@ function SimpleMenu() {
   );
 }
 
-class MainPage extends React.Component {
+class Profile extends React.Component {
   render() {
     return (
       <div>
@@ -72,8 +77,7 @@ class MainPage extends React.Component {
           <SimpleMenu />
         </nav>
         <div className="wrapper">
-          <PostForm />
-          <PostsInMain />
+          <PostsInProfile />
         </div>
       </div>
     );
@@ -86,5 +90,7 @@ class MainPage extends React.Component {
 // }
 // }
 
+// const mapDispatchToProps
+
 // export default connect(null, null)(MainPage);
-export default MainPage;
+export default Profile;

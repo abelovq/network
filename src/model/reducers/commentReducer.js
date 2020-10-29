@@ -8,8 +8,6 @@ const commentReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_COMMENT:
       return { comments: state.comment.concat(action.payload), ...state };
-    // case CREATE_COMMENT_ADD:
-    //     return {}
     case REQUEST_COMMENTS:
       return { ...state };
     case FETCH_GET_COMMENTS:

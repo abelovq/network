@@ -16,11 +16,10 @@ async function fetchChangePost(postID, data) {
   const res = await fetch(`https://postify-api.herokuapp.com/posts/${postID}`, {
     method: "PUT",
     headers: {
-      access_token: localStorage.getItem("access-token"),
+      "Access-Token": localStorage.getItem("access-token"),
       client: localStorage.getItem("client"),
       uid: localStorage.getItem("uid"),
       "Content-Type": "application/json;charset=utf-8",
-      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify(data),
   });

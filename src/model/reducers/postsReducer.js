@@ -10,19 +10,16 @@ import {
 
 let initialState = {
   posts: [],
-  //fetchedPosts: [{title: 'Fetch', description: 'post'}]
 };
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_POST:
       return { posts: state.posts.concat(action.payload), ...state };
-    // return {...state, posts: [...state, action.payload]}
     case REQUEST_POSTS:
       return { ...state };
     case FETCH_POST:
-      //let reverseState = state.reverse();
-      return { ...state, posts: action.payload.reverse() }; //reverse post .reverse()
+      return { ...state, posts: action.payload.reverse().slice(0, 15) }; //reverse post .reverse()
     case REQUEST_CHANGED_POSTS:
       return { ...state };
     case FETCH_CHANGED_POST:

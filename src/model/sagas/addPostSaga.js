@@ -13,7 +13,6 @@ function* sagaWorkerPostAdd(action) {
 }
 
 async function fetchPostsAdd(dataPost) {
-  // const acess_token = JSON.parse(localStorage.getItem('access-token'))
   const res = await fetch("https://postify-api.herokuapp.com/posts", {
     method: "POST",
     headers: {
