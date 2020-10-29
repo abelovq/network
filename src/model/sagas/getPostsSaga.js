@@ -10,7 +10,7 @@ function* sagaWorkerPost(action) {
 }
 
 async function fetchPosts(postID) {
-  const res = await fetch(`https://postify-api.herokuapp.com/posts?_limit=10`, {
+  const res = await fetch(`https://postify-api.herokuapp.com/posts`, {
     method: "GET",
     headers: {
       "Access-Token": localStorage.getItem("access-token"),
