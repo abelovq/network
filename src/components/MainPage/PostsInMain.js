@@ -71,7 +71,7 @@ class PostInMain extends React.Component {
           <div className="title">{this.props.post.title}</div>
         </Link>
         <div className="description">{this.props.post.description}</div>
-        <Comment />
+        {/* <Comment /> */}
         <div
           style={{
             display: "flex",

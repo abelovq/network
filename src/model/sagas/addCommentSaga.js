@@ -23,5 +23,5 @@ async function fetchCommentAdd(data) {
     },
     body: JSON.stringify(data),
   });
-  console.log(res);
+  return await res.json();
 }

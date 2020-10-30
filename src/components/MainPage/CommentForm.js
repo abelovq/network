@@ -1,8 +1,13 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import {
+  fetchComment,
+  fetchGetComments,
+} from "../../model/actions/commentAction";
+import { connect } from "react-redux";
 
-export default class CommentForm extends React.Component {
+export class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +17,7 @@ export default class CommentForm extends React.Component {
       postID: this.props.postID,
     };
     this.changeInput = this.changeInput.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
+    this.submitComment = this.submitComment.bind(this);
   }
 
   changeInput = (event) => {
@@ -23,16 +28,39 @@ export default class CommentForm extends React.Component {
         [event.target.name]: event.target.value,
       },
     }));
+    console.log(event.target.value);
   };
 
-  submitHandler = (event) => {
+  submitComment = (event) => {
     event.preventDefault();
-    console.log(123);
+    this.handlerSubmit();
+    //   this.getComment();
+    // this.setState({ message: "" });
+  };
+
+  handlerSubmit = () => {
+    const newComment = {
+      message: "Aaa v afrike gory vot takoy shirini",
+      commentable_id: 489,
+      commentable_type: "Post",
+    };
+    const action = fetchComment(newComment);
+    this.props.dispatch(action);
+
+    this.getComment();
+  };
+
+  // componentDidMount() {}
+
+  getComment = () => {
+    const action = fetchGetComments();
+    this.props.dispatch(action);
   };
 
   render() {
+    console.log(this.props.postID);
     return (
-      <form onSubmit={this.submitHandler}>
+      <form onSubmit={this.submitComment}>
         <TextField
           id="comment-input"
           label="Type your comment"
@@ -46,7 +74,7 @@ export default class CommentForm extends React.Component {
           variant="contained"
           color="primary"
           style={{ marginTop: 10, width: "100%" }}
-          //   onSubmit={() => console.log(345)}
+          onClick={this.submitComment}
         >
           Add Comment
         </Button>
@@ -54,3 +82,5 @@ export default class CommentForm extends React.Component {
     );
   }
 }
+
+export default connect(null, null)(CommentForm);
