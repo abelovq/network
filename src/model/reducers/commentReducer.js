@@ -11,7 +11,7 @@ const commentReducer = (state = initialState, action) => {
     case REQUEST_COMMENTS:
       return { ...state };
     case FETCH_GET_COMMENTS:
-      return { ...state, comments: action.payload.reverse().slice(0, 10) };
+      return { ...state, comments: action.payload.reverse() };
 
     default:
       return state;

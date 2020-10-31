@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // import MainPage from "./MainPage/MainPage";
 // import { getPosts } from "../../model/actions/postsAction";
 
-import Comment from "./Comment";
+// import Comment from "./Comment";
 
 export class PostsInMain extends React.Component {
   constructor(props) {
