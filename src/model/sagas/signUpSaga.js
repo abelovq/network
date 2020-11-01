@@ -12,14 +12,18 @@ function* sagaWorkerUserAuth(action) {
 }
 
 async function fetchUserAuth(payload) {
-  const res = await fetch("https://postify-api.herokuapp.com/auth", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-    body: JSON.stringify(payload),
-  });
-  const result = await res.json();
+  try {
+    const res = await fetch("https://postify-api.herokuapp.com/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(payload),
+    });
+    const result = await res.json();
 
-  console.log(result);
+    console.log(result);
+  } catch (err) {
+    console.log("error:", err.message);
+  }
 }

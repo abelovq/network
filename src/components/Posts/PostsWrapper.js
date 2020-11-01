@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
-import "./Profile.css";
+import "./PostsWrapper.css";
+import { connect } from "react-redux";
 
-import PostsInProfile from "./PostsInProfile";
+import Posts from "./Posts";
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,8 +48,8 @@ function SimpleMenu() {
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link className="link" to="/posts">
-            All posts
+          <Link className="link" to="/profile">
+            Profile
           </Link>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
@@ -61,24 +62,28 @@ function SimpleMenu() {
   );
 }
 
-class Profile extends React.Component {
-  email = localStorage.getItem("uid");
-
+class PostsWrapper extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <nav className="navbar">
           <SimpleMenu />
         </nav>
         <div className="wrapper">
-          <div className="user">Users email: {this.email}</div>
-
-          <PostsInProfile />
+          <div className="totalposts">
+            Total posts: {this.props.posts.length}
+          </div>
+          <Posts />
         </div>
       </div>
     );
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return {
+    posts: state.postsReducer.posts,
+  };
+};
+
+export default connect(mapStateToProps, null)(PostsWrapper);

@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { fetchChangedPost } from "../../model/actions/postsAction";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -88,14 +87,14 @@ export default function EditModal(props) {
   const handleChangeTitle = (event) => {
     event.persist();
     const newPost = { ...post };
-    console.log("new", newPost);
+
     newPost.title = event.target.value;
     setPost(newPost);
   };
   const handleChangeDescription = (event) => {
     event.persist();
     const newPost = { ...post };
-    console.log("new", newPost);
+
     newPost.description = event.target.value;
     setPost(newPost);
   };

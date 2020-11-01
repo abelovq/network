@@ -4,7 +4,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import "./MainPage.css";
-// import Comment from "./Comment";
 import PostForm from "./PostForm";
 import PostsInMain from "./PostsInMain";
 import { fetchGetComments } from "../../model/actions/commentAction";
@@ -88,7 +87,9 @@ class MainPage extends React.Component {
         </nav>
         <div className="wrapper">
           <PostForm />
-          <div className="postsCounter">Posts: {this.props.posts.length}</div>
+          <div className="totalposts">
+            Total posts: {this.props.posts.length}
+          </div>
           <PostsInMain />
         </div>
       </div>
@@ -102,4 +103,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(MainPage);
-// export default MainPage;

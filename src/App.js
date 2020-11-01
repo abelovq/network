@@ -4,9 +4,7 @@ import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile/Profile";
-import PostsInMain from "./components/MainPage/PostsInMain";
-// import PostID from "./components/Posts/PostID";
-import Posts from "./components/Posts/Posts";
+import PostsWrapper from "./components/Posts/PostsWrapper";
 import Post from "./components/Posts/OnePost";
 
 const redirect =
@@ -23,7 +21,7 @@ const App = () => {
     <>
       <Switch>
         <Route exact path="/main" component={MainPage} />
-        <Route exact path="/posts/" component={Posts} />
+        <Route exact path="/posts/" component={PostsWrapper} />
         <Route exact path="/posts/:postID" component={Post} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={SignUp} />

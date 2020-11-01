@@ -57,3 +57,8 @@
   text-decoration: none;
   color: inherit;
 }
+
+.user {
+  padding-top: 30px;
+  text-align: center;
+}

@@ -17,7 +17,6 @@ class PostForm extends React.Component {
   }
 
   submitHandler = (event) => {
-    console.log("submitHandler");
     event.preventDefault();
 
     const { title } = this.state;
@@ -74,7 +73,7 @@ class PostForm extends React.Component {
           value={this.state.description}
         />
         <Button
-          onClick={this.submitHandler}
+          type="submit"
           variant="contained"
           color="primary"
           style={{ marginTop: 10, width: "100%" }}

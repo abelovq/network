@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import PostForm from './MainPage/PostForm'
-import { connect } from "react-redux";
-// import MainPage from "./MainPage/MainPage";
-import { fetchPost } from "../../model/actions/postsAction";
-// import OnePost from "./OnePost";
 
-// import Comment from "./Comment";
+import { connect } from "react-redux";
+
+import { fetchPost } from "../../model/actions/postsAction";
 
 class Posts extends React.Component {
   constructor(props) {
@@ -27,15 +24,15 @@ class Posts extends React.Component {
   }
 
   render() {
-    // console.log("Posts", this.props);
     const posts = this.props.posts;
-    const postId = this.props.match && this.props.match.params.postID;
-    const postToRender = postId
-      ? posts.filter((post) => post.id === +postId)
-      : posts;
+    const dateSortedposts = posts.sort((a, b) => {
+      const dateOne = new Date(a.created_at),
+        dateTwo = new Date(b.created_at);
+      return dateTwo - dateOne;
+    });
     return (
       <>
-        {postToRender.map((post) => {
+        {dateSortedposts.map((post) => {
           return <OnePost post={post} key={post.id} {...this.props} />;
         })}
       </>
@@ -46,15 +43,14 @@ class Posts extends React.Component {
 class OnePost extends React.Component {
   render() {
     let date = `${new Date(this.props.post.created_at.toString())}`;
-    // console.log("One post", this.props);
-    // onClick={() => this.props.history.push(`/posts/${this.props.post.id}`)}
+
     return (
       <div className="card" key={this.props.post.id}>
         <Link to={`/posts/${this.props.post.id}`}>
           <div className="title">{this.props.post.title}</div>
         </Link>
         <div className="description">{this.props.post.description}</div>
-        {/* <Comment /> */}
+
         <div
           style={{
             display: "flex",

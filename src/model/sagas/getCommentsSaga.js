@@ -11,14 +11,18 @@ function* sagaWorkerComments() {
 }
 
 async function fetchComments() {
-  const res = await fetch("https://postify-api.herokuapp.com/comments", {
-    method: "GET",
-    headers: {
-      "Access-Token": localStorage.getItem("access-token"),
-      client: localStorage.getItem("client"),
-      uid: localStorage.getItem("uid"),
-      "Content-Type": "application/json;charset=utf-8",
-    },
-  });
-  return await res.json();
+  try {
+    const res = await fetch("https://postify-api.herokuapp.com/comments", {
+      method: "GET",
+      headers: {
+        "Access-Token": localStorage.getItem("access-token"),
+        client: localStorage.getItem("client"),
+        uid: localStorage.getItem("uid"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    return await res.json();
+  } catch (err) {
+    console.log("error:", err.message);
+  }
 }

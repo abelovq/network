@@ -58,6 +58,11 @@
   color: inherit;
 }
 
-.totalposts {
+.user {
+  padding-top: 30px;
   text-align: center;
+}
+
+.totalposts {
+  padding-top: 30px;
 }

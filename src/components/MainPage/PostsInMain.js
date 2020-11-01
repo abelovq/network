@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import PostForm from './MainPage/PostForm'
-import { connect } from "react-redux";
-// import MainPage from "./MainPage/MainPage";
-// import { getPosts } from "../../model/actions/postsAction";
 
-// import Comment from "./Comment";
+import { connect } from "react-redux";
 
 export class PostsInMain extends React.Component {
   constructor(props) {
@@ -17,15 +13,15 @@ export class PostsInMain extends React.Component {
   }
 
   render() {
-    // console.log(this.props.posts);
     const posts = this.props.posts;
-    const postId = this.props.match && this.props.match.params.postID;
-    const postToRender = postId
-      ? posts.filter((post) => post.id === +postId)
-      : posts;
+    const dateSortedposts = posts.sort((a, b) => {
+      const dateOne = new Date(a.created_at),
+        dateTwo = new Date(b.created_at);
+      return dateTwo - dateOne;
+    });
     return (
       <>
-        {postToRender.map((post) => {
+        {dateSortedposts.map((post) => {
           return <PostInMain post={post} key={post.id} {...this.props} />;
         })}
       </>
@@ -36,21 +32,18 @@ export class PostsInMain extends React.Component {
 class PostInMain extends React.Component {
   filteredComments = (arr, id) => {
     const result = arr.filter((comment) => comment.commentable_id === +id);
-    // console.log("res", result);
     return result;
   };
 
   render() {
     let date = `${new Date(this.props.post.created_at.toString())}`;
 
-    // onClick={() => this.props.history.push(`/posts/${this.props.post.id}`)}
     return (
       <div className="card" key={this.props.post.id}>
         <Link to={`/posts/${this.props.post.id}`}>
           <div className="title">{this.props.post.title}</div>
         </Link>
         <div className="description">{this.props.post.description}</div>
-        {/* <Comment /> */}
 
         <div className="comments-counter">
           Comments:{" "}
@@ -74,8 +67,6 @@ class PostInMain extends React.Component {
     );
   }
 }
-
-// export default PostsInMain;
 
 const mapStateToProps = (state) => {
   return {

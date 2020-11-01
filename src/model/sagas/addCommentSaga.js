@@ -13,15 +13,19 @@ function* sagaWorkerCommentAdd(action) {
 }
 
 async function fetchCommentAdd(data) {
-  const res = await fetch("https://postify-api.herokuapp.com/comments", {
-    method: "POST",
-    headers: {
-      "Access-Token": localStorage.getItem("access-token"),
-      client: localStorage.getItem("client"),
-      uid: localStorage.getItem("uid"),
-      "Content-Type": "application/json;charset=utf-8",
-    },
-    body: JSON.stringify(data),
-  });
-  return await res.json();
+  try {
+    const res = await fetch("https://postify-api.herokuapp.com/comments", {
+      method: "POST",
+      headers: {
+        "Access-Token": localStorage.getItem("access-token"),
+        client: localStorage.getItem("client"),
+        uid: localStorage.getItem("uid"),
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    });
+    return await res.json();
+  } catch (err) {
+    console.log("error:", err.message);
+  }
 }
