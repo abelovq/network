@@ -31,8 +31,6 @@ export class CommentForm extends React.Component {
   };
 
   submitComment(event) {
-    event.preventDefault();
-
     const newComment = {
       message: this.state.message,
       commentable_id: this.props.postID,
@@ -46,9 +44,8 @@ export class CommentForm extends React.Component {
     this.setState({
       message: "",
     });
+    event.preventDefault();
   }
-
-  // componentDidMount() {}
 
   getComment = () => {
     const action = fetchGetComments();
@@ -56,7 +53,6 @@ export class CommentForm extends React.Component {
   };
 
   render() {
-    // console.log(this.props.postID);
     return (
       <form onSubmit={this.submitComment}>
         <TextField
@@ -74,7 +70,6 @@ export class CommentForm extends React.Component {
           variant="contained"
           color="primary"
           style={{ marginTop: 10, width: "100%" }}
-          //   onClick={this.submitComment}
         >
           Add Comment
         </Button>

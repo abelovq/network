@@ -19,8 +19,14 @@ class CommentsAll extends React.Component {
   };
 
   filteredComments = (arr, id) => {
-    const result = arr.filter((comment) => comment.commentable_id === +id);
-    // console.log("res", result);
+    const result = arr
+      .filter((comment) => comment.commentable_id === +id)
+      .sort((a, b) => {
+        const dateOne = new Date(a.created_at),
+          dateTwo = new Date(b.created_at);
+        return dateTwo - dateOne;
+      });
+
     return result;
   };
 
@@ -47,17 +53,10 @@ class CommentsAll extends React.Component {
         )}
       </>
     );
-    //   return this.props.comments.map((comment) => {
-    //     return (
-    //       <CommentContentxxx comment={comment} key={comment.id} {...this.props} />
-    //     );
-    //   });
-    // }
   }
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state.commentReducer);
   return {
     comments: state.commentReducer.comments,
   };
