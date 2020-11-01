@@ -70,6 +70,8 @@ function SimpleMenu() {
 }
 
 class Profile extends React.Component {
+  email = localStorage.getItem("uid");
+
   render() {
     return (
       <div>
@@ -77,6 +79,7 @@ class Profile extends React.Component {
           <SimpleMenu />
         </nav>
         <div className="wrapper">
+          <div className="user">{this.email}</div>
           <PostsInProfile />
         </div>
       </div>

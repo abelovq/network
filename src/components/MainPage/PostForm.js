@@ -44,17 +44,12 @@ class PostForm extends React.Component {
         [event.target.name]: event.target.value,
       },
     }));
-    console.log(event.target.value);
   };
 
   handlerSubmit = () => {
     const action = fetchPost();
     this.props.dispatch(action);
   };
-
-  componentDidMount() {
-    this.handlerSubmit();
-  }
 
   render() {
     return (

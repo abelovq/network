@@ -19,7 +19,7 @@ const postsReducer = (state = initialState, action) => {
     case REQUEST_POSTS:
       return { ...state };
     case FETCH_POST:
-      return { ...state, posts: action.payload.reverse().slice(0, 15) }; //reverse post .reverse()
+      return { ...state, posts: action.payload.reverse() }; //reverse post .reverse()
     case REQUEST_CHANGED_POSTS:
       return { ...state };
     case FETCH_CHANGED_POST:

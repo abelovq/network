@@ -16,33 +16,6 @@ export class PostsInMain extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  // const action = getPosts();
-  // this.props.dispatch(action);
-  // console.log(action);
-  // let headers = {
-  //   "access-token": localStorage.getItem("access-token"),
-  //   uid: localStorage.getItem("uid"),
-  //   client: localStorage.getItem("client"),
-  // };
-  // let requestOptions = {
-  //   method: "GET",
-  //   headers: headers,
-  //   redirect: "follow",
-  // };
-  // fetch("https://postify-api.herokuapp.com/posts", requestOptions)
-  //   .then((response) => response.text())
-  //   .then((result) =>
-  //     this.setState({
-  //       posts: [
-  //         ...this.state.posts,
-  //         ...JSON.parse(result).reverse().slice(0, 10),
-  //       ],
-  //     })
-  //   )
-  //   .catch((error) => console.log("error", error));
-  // }
-
   render() {
     // console.log(this.props.posts);
     const posts = this.props.posts;
@@ -61,6 +34,12 @@ export class PostsInMain extends React.Component {
 }
 
 class PostInMain extends React.Component {
+  filteredComments = (arr, id) => {
+    const result = arr.filter((comment) => comment.commentable_id === +id);
+    // console.log("res", result);
+    return result;
+  };
+
   render() {
     let date = `${new Date(this.props.post.created_at.toString())}`;
 
@@ -72,6 +51,14 @@ class PostInMain extends React.Component {
         </Link>
         <div className="description">{this.props.post.description}</div>
         {/* <Comment /> */}
+
+        <div className="comments-counter">
+          Comments:{" "}
+          {
+            this.filteredComments(this.props.comments, this.props.post.id)
+              .length
+          }
+        </div>
         <div
           style={{
             display: "flex",
@@ -93,6 +80,7 @@ class PostInMain extends React.Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.postsReducer.posts,
+    comments: state.commentReducer.comments,
   };
 };
 

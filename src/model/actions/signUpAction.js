@@ -2,7 +2,7 @@ import { FETCH_AUTH_USER } from "../types";
 
 export function fetchAuthUser(dataUser) {
   return {
-    first_name: dataUser.first_name,
+    firs_name: dataUser.firs_name,
     last_name: dataUser.last_name,
     email: dataUser.email,
     password: dataUser.password,

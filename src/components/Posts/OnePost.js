@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./Comment";
+import EditModal from "./Modal";
 
 class Post extends React.Component {
   constructor(props) {
@@ -37,19 +38,23 @@ class Post extends React.Component {
       )
 
       .catch((error) => console.log("error", error));
-    // console.log(this.props.match.params.postID);
   }
 
+  updatePost = (newPost) => {
+    console.log("new post", newPost);
+    this.setState({ post: newPost });
+  };
   render() {
-    // console.log("One post", this.state.post);
-    // onClick={() => this.props.history.push(`/posts/${this.props.post.id}`)}
     return (
       <div className="card">
         {this.state.post ? (
           <>
-            <div className="title">{this.state.post.title}</div>
+            <div>
+              <div className="title">{this.state.post.title}</div>
 
-            <div className="description">{this.state.post.description}</div>
+              <div className="description">{this.state.post.description}</div>
+            </div>
+            <EditModal post={this.state.post} updatePost={this.updatePost} />
             <Comment postID={this.state.postID} />
             <div
               style={{

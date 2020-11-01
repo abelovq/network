@@ -22,11 +22,9 @@ const App = () => {
   return (
     <>
       <Switch>
-        {/* <Route exact path="/proverochka" component={Posts} /> */}
         <Route exact path="/main" component={MainPage} />
         <Route exact path="/posts/" component={Posts} />
-        <Route exact path="/posts/:postID" component={Post} /> //Post (import
-        OnePost)
+        <Route exact path="/posts/:postID" component={Post} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/profile" component={Profile} />

@@ -7,8 +7,10 @@ import "./MainPage.css";
 // import Comment from "./Comment";
 import PostForm from "./PostForm";
 import PostsInMain from "./PostsInMain";
+import { fetchGetComments } from "../../model/actions/commentAction";
+import { fetchPost } from "../../model/actions/postsAction";
 
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -65,6 +67,19 @@ function SimpleMenu() {
 }
 
 class MainPage extends React.Component {
+  getComment = () => {
+    const action = fetchGetComments();
+    this.props.dispatch(action);
+  };
+  getPosts = () => {
+    const action = fetchPost();
+    this.props.dispatch(action);
+  };
+  componentDidMount() {
+    this.getPosts();
+    this.getComment();
+  }
+
   render() {
     return (
       <div>
@@ -73,18 +88,18 @@ class MainPage extends React.Component {
         </nav>
         <div className="wrapper">
           <PostForm />
+          <div className="postsCounter">Posts: {this.props.posts.length}</div>
           <PostsInMain />
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    posts: state.postsReducer.posts,
+  };
+};
 
-// const mapStateToProps = state => {
-// return {
-//
-// }
-// }
-
-// export default connect(null, null)(MainPage);
-export default MainPage;
+export default connect(mapStateToProps, null)(MainPage);
+// export default MainPage;

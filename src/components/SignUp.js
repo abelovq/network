@@ -15,7 +15,7 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: "",
+      firs_name: "",
       last_name: "",
       email: "",
       password: "",
@@ -37,7 +37,7 @@ class SignUp extends React.Component {
   handleSubmitForm = (event) => {
     event.preventDefault();
     const action = fetchAuthUser({
-      first_name: this.state.first_name,
+      firs_name: this.state.firs_name,
       last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password,

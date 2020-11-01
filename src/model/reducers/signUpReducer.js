@@ -1,6 +1,6 @@
 import { FETCH_AUTH_USER, REQUEST_AUTH_USER } from "../types";
 const initialState = {
-  first_name: "",
+  firs_name: "",
   last_name: "",
   email: "",
   password: "",
