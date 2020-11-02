@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        rest.auth ? (
+        localStorage.getItem("access-token") ? (
           <Component {...props} />
         ) : (
             <Redirect
@@ -45,7 +45,7 @@ const App = (props) => {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={SignUp} />
         <PrivateRoute exact path="/profile" auth={props.auth} component={Profile} />
-        {redirect}
+        {/* {redirect} */}
       </Switch>
     </>
   );
