@@ -44,11 +44,11 @@ export class CommentForm extends React.Component {
     const action = fetchComment(newComment);
     this.props.dispatch(action);
 
-    this.getComment();
-
     this.setState({
       message: "",
     });
+
+    this.getComment();
     event.preventDefault();
   }
 

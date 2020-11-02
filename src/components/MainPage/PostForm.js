@@ -35,9 +35,9 @@ class PostForm extends React.Component {
     const action = createPost(newPost);
     this.props.dispatch(action);
 
-    this.handlerSubmit();
-
     this.setState({ title: "", description: "" });
+
+    this.handlerSubmit();
   };
 
   handleChangeInput = (event) => {
