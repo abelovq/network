@@ -81,7 +81,14 @@ export default function EditModal(props) {
       title: post.title,
       description: post.description,
     };
-    fetchChangePost(props.post.id, newPost);
+
+    if (props.post.user_id === +localStorage.getItem("user_id")) {
+      fetchChangePost(props.post.id, newPost);
+    } else {
+      return console.error(
+        "You can't change another guy's post, stop it, dude."
+      );
+    }
   };
 
   const handleChangeTitle = (event) => {
@@ -91,6 +98,7 @@ export default function EditModal(props) {
     newPost.title = event.target.value;
     setPost(newPost);
   };
+
   const handleChangeDescription = (event) => {
     event.persist();
     const newPost = { ...post };

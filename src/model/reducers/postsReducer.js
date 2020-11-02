@@ -1,9 +1,9 @@
 import {
   CREATE_POST,
-  FETCH_CHANGED_POST,
-  FETCH_ONE_POST,
+  // FETCH_CHANGED_POST,
+  // FETCH_ONE_POST,
   FETCH_POST,
-  REQUEST_CHANGED_POSTS,
+  // REQUEST_CHANGED_POSTS,
   REQUEST_POSTS,
   USER_POSTS,
 } from "../types";
@@ -20,14 +20,14 @@ const postsReducer = (state = initialState, action) => {
       return { ...state };
     case FETCH_POST:
       return { ...state, posts: action.payload }; //reverse post .reverse()
-    case REQUEST_CHANGED_POSTS:
-      return { ...state };
-    case FETCH_CHANGED_POST:
-      return { ...state, posts: action.payload };
+    // case REQUEST_CHANGED_POSTS:
+    //   return { ...state };
+    // case FETCH_CHANGED_POST:
+    //   return { ...state, posts: action.payload };
     case USER_POSTS:
       return { ...state, posts: action.payload };
-    case FETCH_ONE_POST:
-      return { ...state, posts: action.payload };
+    // case FETCH_ONE_POST:
+    //   return { ...state, posts: action.payload };
 
     default:
       return state;
