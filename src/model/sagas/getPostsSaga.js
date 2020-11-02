@@ -1,12 +1,12 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { FETCH_POST, REQUEST_POSTS } from "../types";
+import { FETCH_POSTS, REQUEST_POSTS } from "../types";
 
 export default function* sagasWatcherPost() {
   yield takeEvery(REQUEST_POSTS, sagaWorkerPost);
 }
 function* sagaWorkerPost(action) {
   const payload = yield call(fetchPosts);
-  yield put({ type: FETCH_POST, payload });
+  yield put({ type: FETCH_POSTS, payload });
 }
 
 async function fetchPosts(postID) {

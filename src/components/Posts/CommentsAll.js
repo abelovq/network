@@ -20,7 +20,7 @@ class CommentsAll extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!this.props.comments.length == prevProps.comments.length) {
+    if (!this.props.comments === prevProps.comments) {
       this.getComment();
     }
   }

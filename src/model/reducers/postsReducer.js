@@ -1,4 +1,4 @@
-import { CREATE_POST, FETCH_POST, REQUEST_POSTS, USER_POSTS } from "../types";
+import { CREATE_POST, FETCH_POSTS, REQUEST_POSTS } from "../types";
 
 let initialState = {
   posts: [],
@@ -10,10 +10,7 @@ const postsReducer = (state = initialState, action) => {
       return { posts: state.posts.concat(action.payload), ...state };
     case REQUEST_POSTS:
       return { ...state };
-    case FETCH_POST:
-      return { ...state, posts: action.payload };
-
-    case USER_POSTS:
+    case FETCH_POSTS:
       return { ...state, posts: action.payload };
 
     default:

@@ -1,10 +1,9 @@
 export const CREATE_POST = "POST/CREATE_POST";
 export const CREATE_POST_ADD = "CREATE_POST_ADD";
 
-export const FETCH_POST = "POST/FETCH_POST";
+export const FETCH_POSTS = "POST/FETCH_POST";
 export const REQUEST_POSTS = "REQUEST_POSTS";
 
-export const USER_POSTS = "USER_POSTS";
 export const REQUEST_PAGE_POSTS = "REQUEST_PAGE_POSTS";
 export const FETCH_ONE_POST = "FETCH_ONE_POST";
 
