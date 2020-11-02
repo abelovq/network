@@ -1,0 +1,10 @@
+.form-post {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px 0;
+}
+
+.input-post {
+    background-color: #fff;
+    width: 100%;
+}

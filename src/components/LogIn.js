@@ -9,37 +9,42 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
+import { fetchLoginUser } from "../model/actions/loginAction";
 
-// import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "Jojo@mail.jp",
+      password: "Jojo123321",
     };
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.handleChangeInput = this.handleChangeInput.bind(this)
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
-  handleChangeInput = event => {
-    event.persist()
-    this.setState(prev => ({...prev, ...{
-      [event.target.name]: event.target.value
-    }}))
-    console.log(event.target.value)
-  }
+  handleChangeInput = (event) => {
+    event.persist();
+    this.setState((prev) => ({
+      ...prev,
+      ...{
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   handleSubmitForm = (event) => {
     event.preventDefault();
-    console.log(123);
-    // fetch("https://postify-api.herokuapp.com/auth/sign_in", {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type' : 'application/json; charset=utf-8'
-    //   }
-    // });
+    const action = fetchLoginUser({
+      email: this.state.email,
+      password: this.state.password,
+    });
+    this.props.dispatch(action);
+
+    setTimeout(function () {
+      window.location.href = "/MainPage";
+    }, 1000);
   };
 
   render() {
@@ -47,7 +52,7 @@ class LogIn extends React.Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div>
-          <Avatar style={{marginTop: 100, marginBottom: 15}}>
+          <Avatar style={{ marginTop: 100, marginBottom: 15 }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -78,12 +83,20 @@ class LogIn extends React.Component {
               autoComplete="current-password"
               onChange={this.handleChangeInput}
             />
-            <Button type="submit" fullWidth variant="contained" color="primary">
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              style={{ marginBottom: 15 }}
+            >
               Log In
             </Button>
-            <Grid container style={{marginBottom: 15}}>
+            <Grid container justify="flex-end">
               <Grid item>
-                <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
+                  {"Don't have an account? Sign Up"}
+                </Link>
               </Grid>
             </Grid>
           </form>
@@ -94,10 +107,4 @@ class LogIn extends React.Component {
   }
 }
 
-export default LogIn;
-
-// mapDispatchToProps = {
-
-// }
-
-// export default connect(null, mapDispatchToProps)(LogIn)
+export default connect(null, null)(LogIn);
