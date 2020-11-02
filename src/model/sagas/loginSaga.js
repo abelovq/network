@@ -1,23 +1,28 @@
 //LOGIN USER
 import { takeEvery, call, put } from "redux-saga/effects";
 import { FETCH_LOGIN_USER, REQUEST_LOGIN_USER } from "../types";
+import { history } from '../../index';
 
 export default function* sagasWatcherUser() {
   yield takeEvery(FETCH_LOGIN_USER, sagaWorkerUser);
 }
 
+
 function* sagaWorkerUser(action) {
+  console.log('action', action)
   const payload = yield call(fetchUser, action);
   yield put({ type: REQUEST_LOGIN_USER, payload });
+  yield call([history, history.push], '/main')
 }
 
 async function fetchUser(payload) {
+  console.log('payload', payload)
   const res = await fetch("https://postify-api.herokuapp.com/auth/sign_in", {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(payload.dataUser),
   });
   try {
     const result = await res.json();

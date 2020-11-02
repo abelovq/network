@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createBrowserHistory } from 'history';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
@@ -15,12 +16,13 @@ import sagasWatcherComments from "./model/sagas/getCommentsSaga";
 import sagasAddComment from "./model/sagas/addCommentSaga";
 
 const saga = createSagaMiddleware();
+export const history = createBrowserHistory();
 
 export const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(saga),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
@@ -34,7 +36,7 @@ saga.run(sagasAddComment);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router history={history}>
       <App />
     </Router>
   </Provider>,
