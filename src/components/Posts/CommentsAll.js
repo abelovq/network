@@ -13,6 +13,10 @@ class CommentsAll extends React.Component {
   componentDidMount() {
     this.getComment();
   }
+
+  componentDidUpdate() {
+    this.getComment();
+  }
   getComment = () => {
     const action = fetchGetComments();
     this.props.dispatch(action);

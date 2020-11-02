@@ -31,7 +31,6 @@ class SignUp extends React.Component {
       ...prev,
       ...{ [event.target.name]: event.target.value },
     }));
-    console.log(event.target.value);
   };
 
   handleSubmitForm = (event) => {

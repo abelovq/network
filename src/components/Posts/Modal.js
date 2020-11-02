@@ -81,12 +81,9 @@ export default function EditModal(props) {
       description: post.description,
     };
 
-    if (!props.post.user_id === +localStorage.getItem("user_id")) {
-      return console.error(
-        "You can't change another guy's post, stop it, dude."
-      );
-    }
-    fetchChangePost(props.post.id, newPost);
+    props.post.user_id === +localStorage.getItem("user_id")
+      ? fetchChangePost(props.post.id, newPost)
+      : console.error("You can't change another guy's post, stop it, dude.");
   };
 
   const handleChangeTitle = (event) => {
