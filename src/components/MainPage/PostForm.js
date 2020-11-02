@@ -16,6 +16,11 @@ class PostForm extends React.Component {
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
+  handlerSubmit = () => {
+    const action = fetchPost();
+    this.props.dispatch(action);
+  };
+
   submitHandler = (event) => {
     event.preventDefault();
 
@@ -43,11 +48,6 @@ class PostForm extends React.Component {
         [event.target.name]: event.target.value,
       },
     }));
-  };
-
-  handlerSubmit = () => {
-    const action = fetchPost();
-    this.props.dispatch(action);
   };
 
   render() {

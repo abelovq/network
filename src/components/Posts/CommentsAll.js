@@ -10,17 +10,20 @@ class CommentsAll extends React.Component {
     this.state = { comments: [] };
   }
 
-  componentDidMount() {
-    this.getComment();
-  }
-
-  componentDidUpdate() {
-    this.getComment();
-  }
   getComment = () => {
     const action = fetchGetComments();
     this.props.dispatch(action);
   };
+
+  componentDidMount() {
+    this.getComment();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.props.comments.length == prevProps.comments.length) {
+      this.getComment();
+    }
+  }
 
   filteredComments = (arr, id) => {
     const result = arr

@@ -65,7 +65,6 @@ class Profile extends React.Component {
   email = localStorage.getItem("uid");
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <nav className="navbar">
