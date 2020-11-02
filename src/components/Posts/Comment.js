@@ -3,7 +3,6 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import { connect } from "react-redux";
 
 import CommentForm from "./CommentForm";
 import CommentsAll from "./CommentsAll";
@@ -55,5 +54,3 @@ export default class Comment extends React.Component {
     );
   }
 }
-
-// export default connect(null, null)(Comment);

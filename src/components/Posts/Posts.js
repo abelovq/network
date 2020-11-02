@@ -68,7 +68,6 @@ class OnePost extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("mapStateToProps", state.postsReducer);
   return {
     posts: state.postsReducer.posts,
   };

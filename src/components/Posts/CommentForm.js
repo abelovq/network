@@ -13,7 +13,7 @@ export class CommentForm extends React.Component {
     this.state = {
       message: "",
       commentable_id: null,
-      commentable_type: "Post",
+      commentable_type: "Comment",
       postID: this.props.postID,
     };
     this.changeInput = this.changeInput.bind(this);
@@ -28,6 +28,11 @@ export class CommentForm extends React.Component {
         [event.target.name]: event.target.value,
       },
     }));
+  };
+
+  getComment = () => {
+    const action = fetchGetComments();
+    this.props.dispatch(action);
   };
 
   submitComment(event) {
@@ -46,11 +51,6 @@ export class CommentForm extends React.Component {
     });
     event.preventDefault();
   }
-
-  getComment = () => {
-    const action = fetchGetComments();
-    this.props.dispatch(action);
-  };
 
   render() {
     return (

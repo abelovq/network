@@ -85,10 +85,4 @@ class PostForm extends React.Component {
   }
 }
 
-// export default PostForm;
-
-// const mapDispatchToProps = {
-//   createPost,
-// };
-
 export default connect(null, null)(PostForm);

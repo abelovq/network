@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditModal(props) {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const [post, setPost] = React.useState({});
@@ -82,13 +81,12 @@ export default function EditModal(props) {
       description: post.description,
     };
 
-    if (props.post.user_id === +localStorage.getItem("user_id")) {
-      fetchChangePost(props.post.id, newPost);
-    } else {
+    if (!props.post.user_id === +localStorage.getItem("user_id")) {
       return console.error(
         "You can't change another guy's post, stop it, dude."
       );
     }
+    fetchChangePost(props.post.id, newPost);
   };
 
   const handleChangeTitle = (event) => {

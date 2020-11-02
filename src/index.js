@@ -13,8 +13,6 @@ import sagasWatcherPost from "./model/sagas/getPostsSaga";
 import sagasWatcherPostAdd from "./model/sagas/addPostSaga";
 import sagasWatcherComments from "./model/sagas/getCommentsSaga";
 import sagasAddComment from "./model/sagas/addCommentSaga";
-// import sagasWatcherChangePost from "./model/sagas/changePostSaga";
-// import sagasWatcherOnePost from "./model/sagas/addPostSaga";
 
 const saga = createSagaMiddleware();
 
@@ -31,8 +29,7 @@ saga.run(sagasWatcherUserAuth);
 saga.run(sagasWatcherPost);
 saga.run(sagasWatcherPostAdd);
 saga.run(sagasWatcherComments);
-// saga.run(sagasWatcherChangePost);
-// saga.run(sagasWatcherOnePost);
+
 saga.run(sagasAddComment);
 
 ReactDOM.render(

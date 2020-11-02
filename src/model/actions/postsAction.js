@@ -1,10 +1,4 @@
-import {
-  CREATE_POST,
-  // REQUEST_CHANGED_POSTS,
-  // REQUEST_PAGE_POSTS,
-  REQUEST_POSTS,
-  USER_POSTS,
-} from "../types";
+import { CREATE_POST, REQUEST_POSTS, USER_POSTS } from "../types";
 
 export function createPost(post) {
   return {
@@ -26,17 +20,3 @@ export function fetchPost(postID) {
     postID: postID,
   };
 }
-
-// export function fetchPagePost(postID) {
-//   return {
-//     type: REQUEST_PAGE_POSTS,
-//     postID: postID,
-//   };
-// }
-
-// export function fetchChangedPost(post) {
-//   return {
-//     type: REQUEST_CHANGED_POSTS,
-//     payload: post,
-//   };
-// }
